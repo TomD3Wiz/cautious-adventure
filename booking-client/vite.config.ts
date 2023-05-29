@@ -17,6 +17,7 @@ export default defineConfig({
       assets: resolve(__dirname, "./src/assets"),
       components: resolve(__dirname, "./src/components"),
       "rtk-app": resolve(__dirname, "./src/rtk-app"),
+      screens: resolve(__dirname, "./src/screens"),
     },
   },
   build: {

@@ -26,6 +26,7 @@ export default function Calendar() {
       events={events}
       select={addEvent}
       eventChange={changeEvent}
+      nowIndicator
     />
   )
 }

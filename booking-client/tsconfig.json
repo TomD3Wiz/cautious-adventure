@@ -18,7 +18,8 @@
     "baseUrl": "./src",
     "paths": {
       "components/*": ["components/*"],
-      "rtk-app/*": ["rtk-app/*"]
+      "rtk-app/*": ["rtk-app/*"],
+      "screens/*": ["screens/*"]
     }
   },
   "include": ["src"],

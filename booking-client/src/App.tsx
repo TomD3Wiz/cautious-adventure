@@ -1,15 +1,17 @@
 import "./App.css"
 
 import Header from "components/header"
-import Calendar from "components/Calendar"
+import NavBar from "components/NavBar";
+import { Outlet } from "react-router-dom";
 import { Box } from "@chakra-ui/react"
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Box padding="15px">
-        <Calendar />
+      <NavBar />
+      <Box padding="25px">
+        <Outlet />
       </Box>
     </div>
   )
