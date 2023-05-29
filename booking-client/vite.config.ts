@@ -16,6 +16,7 @@ export default defineConfig({
     alias: {
       assets: resolve(__dirname, "./src/assets"),
       components: resolve(__dirname, "./src/components"),
+      "rtk-app": resolve(__dirname, "./src/rtk-app"),
     },
   },
   build: {

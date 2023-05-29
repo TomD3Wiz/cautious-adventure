@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
+import calendarEventsReducer from "./store-features/calendar-events"
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    calendarEvents: calendarEventsReducer,
+  },
 })
 
 export type AppDispatch = typeof store.dispatch
