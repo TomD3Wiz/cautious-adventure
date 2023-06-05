@@ -4,6 +4,7 @@ import {
   addEvent,
   changeEvent,
   removeEvent,
+  makeBookingEvent,
 } from "rtk-app/store-features/calendar-events"
 
 export default function useCalendarControls() {
@@ -15,12 +16,14 @@ export default function useCalendarControls() {
 
       calendarApi.unselect() // clear date selection
       dispatch(
-        addEvent({
-          title,
-          start: event.startStr,
-          end: event.endStr,
-          allDay: event.allDay,
-        }),
+        addEvent(
+          makeBookingEvent({
+            title,
+            start: event.startStr,
+            end: event.endStr,
+            allDay: event.allDay,
+          }),
+        ),
       )
     },
     [dispatch],

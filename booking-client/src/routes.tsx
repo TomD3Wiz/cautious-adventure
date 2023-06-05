@@ -7,13 +7,18 @@ import {
 import App from "./App"
 import ErrorPage from "screens/RouteError"
 import CalendarScreen from "screens/Calendar"
+import EnquiriesScreen from "screens/Enquiries"
+import SearchScreen from "screens/Search"
 
 export const router = createHashRouter(
   createRoutesFromElements(
-  <Route path="/" errorElement={<ErrorPage />} element={<App />}>
-    <Route errorElement={<ErrorPage />}>
+    <Route path="/" errorElement={<ErrorPage />} element={<App />}>
+      <Route errorElement={<ErrorPage />}>
         <Route index element={<CalendarScreen />} />
-    </Route>
-  </Route>
+        <Route path="/enquiries" element={<EnquiriesScreen />} />
+        <Route path="/sms" element={<EnquiriesScreen />} />
+        <Route path="/search" element={<SearchScreen />} />
+      </Route>
+    </Route>,
   ),
 )

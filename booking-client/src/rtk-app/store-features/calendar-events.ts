@@ -7,6 +7,21 @@ export interface CalendarEvent {
   start: string
   end: string
   allDay: boolean
+  bookedBy: string
+  orderNumber: string
+  firstName: string
+  lastName: string
+  address: string
+  suburb: string
+  postcode: string
+  state: string
+  vehicleRegistration: string
+  status: string
+  vehicleMake: string
+  vehicleModel: string
+  vehicleYear: string
+  vehicleBuildDescription: string
+  fittingDetails: string
 }
 
 export interface CalendarEvents {
@@ -45,4 +60,32 @@ export const calendarEventSlice = createSlice({
 
 export const { addEvent, changeEvent, removeEvent } = calendarEventSlice.actions
 
+export const baseEvent = {
+  title: "",
+  start: "",
+  end: "",
+  allDay: false,
+  bookedBy: "",
+  orderNumber: "",
+  firstName: "",
+  lastName: "",
+  address: "",
+  suburb: "",
+  postcode: "",
+  state: "",
+  vehicleRegistration: "",
+  status: "",
+  vehicleMake: "",
+  vehicleModel: "",
+  vehicleYear: "",
+  vehicleBuildDescription: "",
+  fittingDetails: "",
+}
+
+export function makeBookingEvent(obj: object): CalendarEvent {
+  return {
+    ...baseEvent,
+    ...obj,
+  }
+}
 export default calendarEventSlice.reducer
