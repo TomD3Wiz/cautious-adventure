@@ -12,27 +12,6 @@ import {
 
 import { Section } from "./style"
 
-// export interface CalendarEvent {
-//     id?: number
-//     title: string
-//     start: string
-//     end: string
-//     allDay: boolean
-//     bookedBy: string
-//     orderNumber: string
-//     firstName: string
-//     address: string
-//     suburb: string
-//     postcode: string
-//     state: string
-//     vehicleRegistration: string
-//     status: string
-//     vehicleMake: string
-//     vehicleModel: string
-//     vehicleYear: string
-//     vehicleBuildDescription: string
-//     fittingDetails: string
-//   }
 export default function BookingForm() {
   const { control, handleSubmit } = useForm()
   return (
