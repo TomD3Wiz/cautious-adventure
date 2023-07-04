@@ -19,7 +19,9 @@
     "paths": {
       "components/*": ["components/*"],
       "rtk-app/*": ["rtk-app/*"],
-      "screens/*": ["screens/*"]
+      "screens/*": ["screens/*"],
+      "types/*": ["types/*"],
+      "settings/*": ["settings/*"]
     }
   },
   "include": ["src"],

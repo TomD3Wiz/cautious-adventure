@@ -1,51 +1,62 @@
-import { useCallback } from "react"
-import { useDispatch } from "react-redux"
+import { useDisclosure } from "@chakra-ui/react"
+import { useCallback, useState } from "react"
 import {
-  addEvent,
-  changeEvent,
-  removeEvent,
-  makeBookingEvent,
-} from "rtk-app/store-features/calendar-events"
+  useListEventsQuery,
+  useUpdateEventMutation,
+} from "rtk-app/store-features/api/calendar-events"
 
 export default function useCalendarControls() {
-  const dispatch = useDispatch()
+  const [event, setEvent] = useState()
+  const [updateEvent] = useUpdateEventMutation()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { data: events, refetch } = useListEventsQuery("")
   const addEventLocal = useCallback(
     (event: any) => {
       let calendarApi = event.view.calendar
-      let title = prompt("Please enter a new title for your event") || "default"
-
       calendarApi.unselect() // clear date selection
-      dispatch(
-        addEvent(
-          makeBookingEvent({
-            title,
-            start: event.startStr,
-            end: event.endStr,
-            allDay: event.allDay,
-          }),
-        ),
-      )
+      setEvent(event)
+      onOpen()
     },
-    [dispatch],
+    [setEvent, onOpen],
+  )
+
+  const editEventLocal = useCallback(
+    (event: any) => {
+      let calendarApi = event.view.calendar
+      calendarApi.unselect() // clear date selection
+      setEvent(event?.event?.toPlainObject({ collapseExtendedProps: true }))
+      onOpen()
+    },
+    [setEvent, onOpen],
   )
 
   const changeEventLocal = useCallback(
     (event: any) => {
-      dispatch(changeEvent(event.event.toPlainObject()))
+      const plainEvent = event.event.toPlainObject({
+        collapseExtendedProps: true,
+      })
+      updateEvent({
+        uuid: plainEvent.id,
+        body: plainEvent,
+      })
     },
-    [dispatch],
+    [updateEvent],
   )
 
-  const removeEventLocal = useCallback(
-    (event: any) => {
-      dispatch(removeEvent(event.event.toPlainObject()))
-    },
-    [dispatch],
-  )
+  const didSubmit = useCallback(() => {
+    onClose()
+    refetch()
+  }, [onClose, refetch])
 
   return {
     addEvent: addEventLocal,
+    editEvent: editEventLocal,
     changeEvent: changeEventLocal,
-    removeEvent: removeEventLocal,
+    event,
+    isOpen,
+    onOpen,
+    onClose,
+    events,
+    didSubmit,
   }
 }

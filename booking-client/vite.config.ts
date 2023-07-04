@@ -18,6 +18,8 @@ export default defineConfig({
       components: resolve(__dirname, "./src/components"),
       "rtk-app": resolve(__dirname, "./src/rtk-app"),
       screens: resolve(__dirname, "./src/screens"),
+      settings: resolve(__dirname, "./src/settings"),
+      types: resolve(__dirname, "./src/types"),
     },
   },
   build: {

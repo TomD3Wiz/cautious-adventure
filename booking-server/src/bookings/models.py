@@ -19,6 +19,7 @@ class BookingStatus(BaseModel):
     code = models.CharField(max_length=255, unique=True)
     display_name = models.TextField(blank=True)
     color = ColorField(default='#FF0000')
+    text_color = ColorField(default='#FFFFF')
 
     class Meta:
         ordering = ('created',)

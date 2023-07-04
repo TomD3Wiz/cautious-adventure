@@ -1,10 +1,19 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-import calendarEventsReducer from "./store-features/calendar-events"
+import { bookingEventApi } from "./store-features/api/calendar-events"
+import { bookingStatusApi } from "./store-features/api/booking-status"
+import { staffApi } from "./store-features/api/staff"
 
 export const store = configureStore({
   reducer: {
-    calendarEvents: calendarEventsReducer,
+    [bookingEventApi.reducerPath]: bookingEventApi.reducer,
+    [bookingStatusApi.reducerPath]: bookingStatusApi.reducer,
+    [staffApi.reducerPath]: staffApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(bookingEventApi.middleware)
+      .concat(staffApi.middleware)
+      .concat(bookingStatusApi.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch

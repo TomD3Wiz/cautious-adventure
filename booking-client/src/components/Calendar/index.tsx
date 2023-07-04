@@ -1,11 +1,8 @@
-import { useCallback } from "react"
-import type { RootState } from "rtk-app/store"
-import { useSelector } from "react-redux"
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import interactionPlugin from "@fullcalendar/interaction"
-
+import BookingForm from "components/BookingForm"
 import useCalendarControls from "./hooks"
 import {
   Modal,
@@ -17,15 +14,18 @@ import {
   ModalCloseButton,
   Button,
 } from "@chakra-ui/react"
-import { useDisclosure } from "@chakra-ui/react"
 
 export default function Calendar() {
-  const events = useSelector((state: RootState) => state.calendarEvents.events)
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const addEventModal = useCallback((evt) => {
-    onOpen()
-  }, [])
-  const { addEvent, changeEvent } = useCalendarControls()
+  const {
+    addEvent,
+    editEvent,
+    changeEvent,
+    isOpen,
+    onClose,
+    event,
+    events,
+    didSubmit,
+  } = useCalendarControls()
   return (
     <>
       <FullCalendar
@@ -42,18 +42,21 @@ export default function Calendar() {
         dayMaxEvents={true}
         events={events}
         select={addEvent}
+        eventClick={editEvent}
         eventChange={changeEvent}
         nowIndicator
       />
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+        <ModalContent sx={{ maxWidth: "80%" }}>
+          <ModalHeader>Workshop Booking</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
+          <ModalBody>
+            <BookingForm didSubmit={didSubmit} event={event} />
+          </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button colorScheme="red" mr={3} onClick={onClose}>
+              Cancel
             </Button>
           </ModalFooter>
         </ModalContent>

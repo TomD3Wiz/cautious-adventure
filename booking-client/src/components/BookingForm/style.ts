@@ -11,3 +11,13 @@ export const Section = styled.div`
     border: solid 1px black;
   }
 `
+
+export const DateContainer = styled.div`
+  input {
+    width: 100%;
+    padding: 5px;
+
+    border: solid 1px lightgray;
+    border-radius: 4px;
+  }
+`
