@@ -1,14 +1,17 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import type { CalendarEvent } from 'types/calendar';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import type { CalendarEvent } from 'types/calendar'
 
-import { commonFetchBase } from './common';
+import { commonFetchBase } from './common'
 
 export const bookingEventApi = createApi({
   reducerPath: 'bookingevent',
   baseQuery: commonFetchBase('/api/bookings/v1/booking_event/'),
   endpoints: (builder) => ({
-    listEvents: builder.query<Array<CalendarEvent>, string>({
-      query: () => '',
+    listEvents: builder.query<Array<CalendarEvent>, number>({
+      query: (start_month) => {
+        const end_month = start_month + 3
+        return `?start__month__gte=${start_month}&start__month__lte=${end_month}`
+      },
     }),
     updateEvent: builder.mutation({
       query: ({ uuid, body }) => ({
@@ -31,7 +34,7 @@ export const bookingEventApi = createApi({
       }),
     }),
   }),
-});
+})
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
@@ -40,4 +43,4 @@ export const {
   useUpdateEventMutation,
   useAddEventMutation,
   useDeleteEventMutation,
-} = bookingEventApi;
+} = bookingEventApi

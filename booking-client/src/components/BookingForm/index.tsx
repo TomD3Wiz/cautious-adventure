@@ -1,6 +1,6 @@
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { Controller } from 'react-hook-form';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { Controller } from 'react-hook-form'
 
 import {
   Heading,
@@ -10,12 +10,12 @@ import {
   Textarea,
   Select,
   Button,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 
-import { useBookingControls } from './hooks';
-import { Section, DateContainer } from './style';
+import { useBookingControls } from './hooks'
+import { Section, DateContainer } from './style'
 
-const DATEFORMAT = 'dd/MM/yyyy HH:mm';
+const DATEFORMAT = 'dd/MM/yyyy HH:mm'
 
 export default function BookingForm(props: any) {
   const {
@@ -25,7 +25,7 @@ export default function BookingForm(props: any) {
     save,
     deleteIt,
     deleteCount,
-  } = useBookingControls(props);
+  } = useBookingControls(props)
   return (
     <>
       <SimpleGrid columns={2} spacing={5} padding={'5px'}>
@@ -253,5 +253,5 @@ export default function BookingForm(props: any) {
         </Button>
       )}
     </>
-  );
+  )
 }

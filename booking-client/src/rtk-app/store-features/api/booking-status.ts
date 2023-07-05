@@ -1,7 +1,7 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import type { BookingStatus } from 'types/booking-status';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import type { BookingStatus } from 'types/booking-status'
 
-import { commonFetchBase } from './common';
+import { commonFetchBase } from './common'
 
 export const bookingStatusApi = createApi({
   reducerPath: 'bookingstatus',
@@ -11,8 +11,8 @@ export const bookingStatusApi = createApi({
       query: () => '',
     }),
   }),
-});
+})
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useListStatusQuery } = bookingStatusApi;
+export const { useListStatusQuery } = bookingStatusApi

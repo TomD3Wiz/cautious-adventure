@@ -1,7 +1,7 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import type { Staff } from 'types/staff';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import type { Staff } from 'types/staff'
 
-import { commonFetchBase } from './common';
+import { commonFetchBase } from './common'
 
 export const staffApi = createApi({
   reducerPath: 'staff',
@@ -11,8 +11,8 @@ export const staffApi = createApi({
       query: () => '',
     }),
   }),
-});
+})
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useListStaffQuery } = staffApi;
+export const { useListStaffQuery } = staffApi

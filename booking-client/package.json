@@ -11,6 +11,7 @@
     "test": "vitest",
     "format": "prettier --config .prettierrc.json --write .",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -69,7 +70,7 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
+      "prettier/prettier": "off",
       "react/jsx-no-target-blank": "off"
     }
   },

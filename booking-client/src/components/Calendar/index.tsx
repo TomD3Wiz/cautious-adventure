@@ -7,14 +7,14 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from '@chakra-ui/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import FullCalendar from '@fullcalendar/react';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import BookingForm from 'components/BookingForm';
+} from '@chakra-ui/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import FullCalendar from '@fullcalendar/react'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import BookingForm from 'components/BookingForm'
 
-import useCalendarControls from './hooks';
+import useCalendarControls from './hooks'
 
 export default function Calendar() {
   const {
@@ -26,7 +26,8 @@ export default function Calendar() {
     event,
     events,
     didSubmit,
-  } = useCalendarControls();
+    dateRangeUpdated,
+  } = useCalendarControls()
   return (
     <>
       <FullCalendar
@@ -45,6 +46,7 @@ export default function Calendar() {
         select={addEvent}
         eventClick={editEvent}
         eventChange={changeEvent}
+        datesSet={dateRangeUpdated}
         nowIndicator
       />
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -63,5 +65,5 @@ export default function Calendar() {
         </ModalContent>
       </Modal>
     </>
-  );
+  )
 }

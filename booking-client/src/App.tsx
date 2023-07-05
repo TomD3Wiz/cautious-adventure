@@ -1,22 +1,22 @@
-import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react'
+import { Outlet } from 'react-router-dom'
 
-import { Box, Spinner } from '@chakra-ui/react';
-import NavBar from 'components/NavBar';
-import Header from 'components/header';
-import { useWhoAmIQuery } from 'rtk-app/store-features/api/whoami';
-import SETTINGS from 'settings/dev';
+import { Box, Spinner } from '@chakra-ui/react'
+import NavBar from 'components/NavBar'
+import Header from 'components/header'
+import { useWhoAmIQuery } from 'rtk-app/store-features/api/whoami'
+import SETTINGS from 'settings/dev'
 
-import './App.css';
+import './App.css'
 
 function App() {
-  const { data: currentUser, error, isLoading } = useWhoAmIQuery('');
+  const { data: currentUser, error, isLoading } = useWhoAmIQuery('')
   useEffect(() => {
     if (error) {
-      const next = `?next=${encodeURIComponent(window.location.href)}`;
-      window.location.href = `${SETTINGS.login}${next}`;
+      const next = `?next=${encodeURIComponent(window.location.href)}`
+      window.location.href = `${SETTINGS.login}${next}`
     }
-  }, [error]);
+  }, [error])
   if (isLoading || error) {
     return (
       <div className="App">
@@ -26,7 +26,7 @@ function App() {
           <Spinner />
         </Box>
       </div>
-    );
+    )
   }
   return (
     <div className="App">
@@ -36,7 +36,7 @@ function App() {
         <Outlet />
       </Box>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,7 +1,7 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import type { User } from 'types/staff';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import type { User } from 'types/staff'
 
-import { commonFetchBase } from './common';
+import { commonFetchBase } from './common'
 
 export const whoAmIApi = createApi({
   reducerPath: 'whoami',
@@ -11,8 +11,8 @@ export const whoAmIApi = createApi({
       query: () => '',
     }),
   }),
-});
+})
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useWhoAmIQuery } = whoAmIApi;
+export const { useWhoAmIQuery } = whoAmIApi

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Section = styled.div`
   border: solid 1px lightgray;
@@ -10,7 +10,7 @@ export const Section = styled.div`
   &:hover {
     border: solid 1px black;
   }
-`;
+`
 
 export const DateContainer = styled.div`
   input {
@@ -20,4 +20,4 @@ export const DateContainer = styled.div`
     border: solid 1px lightgray;
     border-radius: 4px;
   }
-`;
+`
