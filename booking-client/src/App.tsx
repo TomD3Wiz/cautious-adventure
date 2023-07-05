@@ -1,16 +1,32 @@
-import "./App.css"
+import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import Header from "components/header"
-import NavBar from "components/NavBar"
-import { Outlet } from "react-router-dom"
-import { Box, Spinner } from "@chakra-ui/react"
+import { Box, Spinner } from '@chakra-ui/react';
+import NavBar from 'components/NavBar';
+import Header from 'components/header';
+import { useWhoAmIQuery } from 'rtk-app/store-features/api/whoami';
+import SETTINGS from 'settings/dev';
 
-import { useWhoAmIQuery } from "rtk-app/store-features/api/whoami"
+import './App.css';
 
 function App() {
-  const { data: currentUser, error, isLoading } = useWhoAmIQuery("")
+  const { data: currentUser, error, isLoading } = useWhoAmIQuery('');
+  useEffect(() => {
+    if (error) {
+      const next = `?next=${encodeURIComponent(window.location.href)}`;
+      window.location.href = `${SETTINGS.login}${next}`;
+    }
+  }, [error]);
   if (isLoading || error) {
-    return <Spinner />
+    return (
+      <div className="App">
+        <Header currentUser={currentUser} />
+        <NavBar />
+        <Box padding="25px">
+          <Spinner />
+        </Box>
+      </div>
+    );
   }
   return (
     <div className="App">
@@ -20,7 +36,7 @@ function App() {
         <Outlet />
       </Box>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

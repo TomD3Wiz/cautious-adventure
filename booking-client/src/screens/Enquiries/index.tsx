@@ -1,5 +1,5 @@
-import { InfoOutlineIcon } from "@chakra-ui/icons"
-import { Text } from "@chakra-ui/react"
+import { InfoOutlineIcon } from '@chakra-ui/icons';
+import { Text } from '@chakra-ui/react';
 
 export default function EnquiriesScreen() {
   return (
@@ -10,5 +10,5 @@ export default function EnquiriesScreen() {
         Feature is not yet available
       </Text>
     </div>
-  )
+  );
 }

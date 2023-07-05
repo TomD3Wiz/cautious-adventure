@@ -2,13 +2,14 @@ import {
   createRoutesFromElements,
   createHashRouter,
   Route,
-} from "react-router-dom"
+} from 'react-router-dom';
 
-import App from "./App"
-import ErrorPage from "screens/RouteError"
-import CalendarScreen from "screens/Calendar"
-import EnquiriesScreen from "screens/Enquiries"
-import SearchScreen from "screens/Search"
+import CalendarScreen from 'screens/Calendar';
+import EnquiriesScreen from 'screens/Enquiries';
+import ErrorPage from 'screens/RouteError';
+import SearchScreen from 'screens/Search';
+
+import App from './App';
 
 export const router = createHashRouter(
   createRoutesFromElements(
@@ -18,6 +19,6 @@ export const router = createHashRouter(
         <Route path="/enquiries" element={<EnquiriesScreen />} />
         <Route path="/search" element={<SearchScreen />} />
       </Route>
-    </Route>,
-  ),
-)
+    </Route>
+  )
+);

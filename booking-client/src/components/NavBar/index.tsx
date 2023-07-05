@@ -1,4 +1,4 @@
-import { NavContainer, NavItem } from "./style"
+import { NavContainer, NavItem } from './style';
 
 export default function NavBar() {
   return (
@@ -7,5 +7,5 @@ export default function NavBar() {
       <NavItem to="/search">Search</NavItem>
       <NavItem to="/enquiries">Enquiries</NavItem>
     </NavContainer>
-  )
+  );
 }

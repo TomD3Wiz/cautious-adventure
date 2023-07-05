@@ -1,6 +1,7 @@
-import { Controller } from "react-hook-form"
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Controller } from 'react-hook-form';
+
 import {
   Heading,
   Input,
@@ -9,11 +10,12 @@ import {
   Textarea,
   Select,
   Button,
-} from "@chakra-ui/react"
-import { useBookingControls } from "./hooks"
-import { Section, DateContainer } from "./style"
+} from '@chakra-ui/react';
 
-const DATEFORMAT = "dd/MM/yyyy HH:mm"
+import { useBookingControls } from './hooks';
+import { Section, DateContainer } from './style';
+
+const DATEFORMAT = 'dd/MM/yyyy HH:mm';
 
 export default function BookingForm(props: any) {
   const {
@@ -23,15 +25,15 @@ export default function BookingForm(props: any) {
     save,
     deleteIt,
     deleteCount,
-  } = useBookingControls(props)
+  } = useBookingControls(props);
   return (
     <>
-      <SimpleGrid columns={2} spacing={5} padding={"5px"}>
+      <SimpleGrid columns={2} spacing={5} padding={'5px'}>
         <Section>
-          <Heading marginBottom={"10px"} size="md">
+          <Heading marginBottom={'10px'} size="md">
             Booking Information
           </Heading>
-          <SimpleGrid columns={2} spacing={5} padding={"5px"}>
+          <SimpleGrid columns={2} spacing={5} padding={'5px'}>
             <Text>Booking Title</Text>
             <Controller
               name="title"
@@ -51,7 +53,7 @@ export default function BookingForm(props: any) {
                   {staffOptions?.map((value) => (
                     <option key={value.id} value={value.user_info.id}>
                       {value.user_info.first_name +
-                        " " +
+                        ' ' +
                         value.user_info.last_name}
                     </option>
                   ))}
@@ -71,7 +73,7 @@ export default function BookingForm(props: any) {
                   {staffOptions?.map((value) => (
                     <option key={value.id} value={value.user_info.id}>
                       {value.user_info.first_name +
-                        " " +
+                        ' ' +
                         value.user_info.last_name}
                     </option>
                   ))}
@@ -137,7 +139,7 @@ export default function BookingForm(props: any) {
           </SimpleGrid>
         </Section>
         <Section>
-          <Heading marginBottom={"10px"} size="md">
+          <Heading marginBottom={'10px'} size="md">
             Client Information
           </Heading>
           <SimpleGrid columns={2} spacing={5}>
@@ -186,9 +188,9 @@ export default function BookingForm(props: any) {
           </SimpleGrid>
         </Section>
       </SimpleGrid>
-      <SimpleGrid columns={2} spacing={5} padding={"5px"}>
+      <SimpleGrid columns={2} spacing={5} padding={'5px'}>
         <Section>
-          <Heading marginBottom={"10px"} size="md">
+          <Heading marginBottom={'10px'} size="md">
             Vehicle Information
           </Heading>
           <SimpleGrid columns={2} spacing={5}>
@@ -226,14 +228,14 @@ export default function BookingForm(props: any) {
         </Section>
 
         <Section>
-          <Heading marginBottom={"10px"} size="md">
+          <Heading marginBottom={'10px'} size="md">
             Fitting Details
           </Heading>
           <Controller
             name="fitting_details"
             control={control}
             render={({ field }) => (
-              <Textarea height={"300px"} size="lg" {...field} />
+              <Textarea height={'300px'} size="lg" {...field} />
             )}
           />
         </Section>
@@ -243,7 +245,7 @@ export default function BookingForm(props: any) {
       </Button>
       {props?.event?.id && (
         <Button
-          colorScheme={deleteCount > 0 ? "red" : "orange"}
+          colorScheme={deleteCount > 0 ? 'red' : 'orange'}
           onClick={deleteIt}
         >
           Delete
@@ -251,5 +253,5 @@ export default function BookingForm(props: any) {
         </Button>
       )}
     </>
-  )
+  );
 }

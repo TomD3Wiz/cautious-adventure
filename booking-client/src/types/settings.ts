@@ -1,3 +1,5 @@
 export interface Setting {
-  baseUrl: string
+  baseUrl: string;
+  login: string;
+  logout: string;
 }

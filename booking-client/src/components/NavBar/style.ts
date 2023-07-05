@@ -1,14 +1,15 @@
-import styled from "@emotion/styled"
-import { lighten, darken } from "polished"
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
+
+import styled from '@emotion/styled';
+import { lighten, darken } from 'polished';
 
 export const NavContainer = styled.div`
   display: flex;
-  border-top: 2px solid ${darken(0.2, "#00aeef")};
-  border-bottom: 2px solid ${lighten(0.2, "#00aeef")};
+  border-top: 2px solid ${darken(0.2, '#00aeef')};
+  border-bottom: 2px solid ${lighten(0.2, '#00aeef')};
   justify-content: space-evenly;
   background-color: #00aeef;
-`
+`;
 export const NavItem = styled(Link)`
   display: inline-flex;
   flex: auto;
@@ -21,6 +22,6 @@ export const NavItem = styled(Link)`
   border-radius: 5px;
 
   &:hover {
-    background-color: ${lighten(0.1, "#00aeef")};
+    background-color: ${lighten(0.1, '#00aeef')};
   }
-`
+`;

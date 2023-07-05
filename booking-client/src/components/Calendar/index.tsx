@@ -1,9 +1,3 @@
-import FullCalendar from "@fullcalendar/react"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import timeGridPlugin from "@fullcalendar/timegrid"
-import interactionPlugin from "@fullcalendar/interaction"
-import BookingForm from "components/BookingForm"
-import useCalendarControls from "./hooks"
 import {
   Modal,
   ModalOverlay,
@@ -13,7 +7,14 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import BookingForm from 'components/BookingForm';
+
+import useCalendarControls from './hooks';
 
 export default function Calendar() {
   const {
@@ -25,15 +26,15 @@ export default function Calendar() {
     event,
     events,
     didSubmit,
-  } = useCalendarControls()
+  } = useCalendarControls();
   return (
     <>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: "dayGridMonth,timeGridWeek,timeGridDay",
-          center: "title",
-          right: "prev,next today",
+          left: 'dayGridMonth,timeGridWeek,timeGridDay',
+          center: 'title',
+          right: 'prev,next today',
         }}
         initialView="timeGridDay"
         editable={true}
@@ -48,7 +49,7 @@ export default function Calendar() {
       />
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent sx={{ maxWidth: "80%" }}>
+        <ModalContent sx={{ maxWidth: '80%' }}>
           <ModalHeader>Workshop Booking</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -62,5 +63,5 @@ export default function Calendar() {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }
