@@ -3,6 +3,7 @@ export interface User {
   username: string
   first_name: string
   last_name: string
+  csrf?: string
 }
 
 export interface Staff {

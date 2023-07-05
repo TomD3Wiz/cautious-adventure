@@ -1,7 +1,7 @@
 import fcav from "assets/fcav-logon.png"
 import { Flex, Text, Box, Image } from "@chakra-ui/react"
 
-export default function Header() {
+export default function Header(props: any) {
   return (
     <Flex bg="black" h="100px">
       <Image src={fcav} h="100%" />
@@ -20,6 +20,7 @@ export default function Header() {
           <Text fontSize="xs">(03) 9794 6477</Text>
         </Box>
       </Flex>
+      <Flex>Welcome {props?.currentUser?.first_name}</Flex>
     </Flex>
   )
 }

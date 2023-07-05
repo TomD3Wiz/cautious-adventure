@@ -5,8 +5,12 @@ export function commonFetchBase(apiUrl: string) {
   return fetchBaseQuery({
     baseUrl: `${SETTINGS.baseUrl}${apiUrl}`,
     credentials: "include",
-    prepareHeaders(headers) {
-      headers.set("X-CSRFToken", "nua9BTy89QG9gyII1oOxRxHL6JR57eYj")
+    prepareHeaders(headers, api) {
+      const state = api.getState() as any
+      const csrf = state?.whoami?.queries['whoAmI("")']?.data?.csrf
+      if (csrf) {
+        headers.set("X-CSRFToken", csrf)
+      }
       return headers
     },
   })

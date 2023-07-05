@@ -40,7 +40,7 @@ export default function Calendar() {
         selectable={true}
         selectMirror={true}
         dayMaxEvents={true}
-        events={events}
+        events={events as any}
         select={addEvent}
         eventClick={editEvent}
         eventChange={changeEvent}
