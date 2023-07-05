@@ -10,4 +10,5 @@ router.register(r'staff_preferences', views.StaffPreferencesViewSet)
 
 urlpatterns = [
     path('v1/', include(router.urls)),
+    path('v1/whoami', views.whoami),
 ]
