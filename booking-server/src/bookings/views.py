@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 from bookings.serializers import BookingEventSerializer, BookingStatusSerializer, StaffPreferencesSerializer, UserSerializer
 from bookings.models import BookingStatus, BookingEvent, StaffPreferences
-
+from bookings.filtersets import EventFilter
 
 class BookingStatusViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = BookingStatus.objects.all()
@@ -22,7 +22,7 @@ class BookingEventViewSet(viewsets.ModelViewSet):
     queryset = BookingEvent.objects.select_related('status', 'booked_by', 'installer')
     serializer_class = BookingEventSerializer
     permission_classes = [permissions.IsAuthenticated]
-    filterset_fields = ['start']
+    filterset_class = EventFilter
 
 
 class StaffPreferencesViewSet(viewsets.ReadOnlyModelViewSet):
