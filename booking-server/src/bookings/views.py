@@ -15,6 +15,7 @@ class BookingEventViewSet(viewsets.ModelViewSet):
     queryset = BookingEvent.objects.select_related('status', 'booked_by', 'installer')
     serializer_class = BookingEventSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filterset_fields = ['start']
 
 class StaffPreferencesViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = StaffPreferences.objects.select_related('user').filter(user__is_active=True)

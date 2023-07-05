@@ -1,10 +1,15 @@
 import uuid
+
 from django.db import models
 from django.contrib.auth import get_user_model
+
+import reversion
+
 from colorfield.fields import ColorField
 # Create your models here.
 
 User = get_user_model()
+
 
 class BaseModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -15,6 +20,7 @@ class BaseModel(models.Model):
         abstract = True
 
 
+@reversion.register()
 class BookingStatus(BaseModel):
     code = models.CharField(max_length=255, unique=True)
     display_name = models.TextField(blank=True)
@@ -28,6 +34,7 @@ class BookingStatus(BaseModel):
         return f'{self.display_name} ({self.code})'
 
 
+@reversion.register()
 class BookingEvent(BaseModel):
     # Full Calendar Core fields
     title = models.TextField(blank=True)
@@ -62,6 +69,7 @@ class BookingEvent(BaseModel):
     def __str__(self):
         return self.title
 
+@reversion.register()
 class StaffPreferences(BaseModel):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     booking_color = ColorField(default='#FF0000')

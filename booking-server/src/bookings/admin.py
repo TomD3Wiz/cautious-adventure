@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
+
+from reversion.admin import VersionAdmin
+
 from bookings.models import BookingEvent, BookingStatus, StaffPreferences
 
 User = get_user_model()
@@ -17,8 +20,8 @@ class UserAdmin(AuthUserAdmin):
 
 
 # Register your models here.
-admin.site.register(BookingStatus, admin.ModelAdmin)
-admin.site.register(BookingEvent, admin.ModelAdmin)
+admin.site.register(BookingStatus, VersionAdmin)
+admin.site.register(BookingEvent, VersionAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
