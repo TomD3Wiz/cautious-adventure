@@ -5,4 +5,7 @@ markdown
 django-filter
 django-colorfield
 django-cors-headers
+django-classy-settings
 django-reversion
+argon2-cffi
+bcrypt
