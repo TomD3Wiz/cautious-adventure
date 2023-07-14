@@ -205,7 +205,7 @@ class LiveSettings(Settings):
     }
 
     def CSRF_TRUSTED_ORIGINS(self):
-        return [f'https://{self.host}']
+        return [f'https://{self.HOST}']
 
 
 __getattr__, __dir__ = BaseSettings.use()
