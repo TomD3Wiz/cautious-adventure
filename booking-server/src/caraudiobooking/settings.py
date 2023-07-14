@@ -175,4 +175,6 @@ class LiveSettings(Settings):
         "django.contrib.auth.hashers.ScryptPasswordHasher",
     ]
 
+    STATIC_ROOT="/var/www/html/static/"
+
 __getattr__, __dir__ = BaseSettings.use()
