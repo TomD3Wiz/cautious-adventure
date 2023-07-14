@@ -19,6 +19,7 @@ denv = env['DJANGO_']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 class Settings(BaseSettings):
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -30,7 +31,6 @@ class Settings(BaseSettings):
     DEBUG = True
 
     ALLOWED_HOSTS = []
-
 
     # Application definition
 
@@ -83,7 +83,6 @@ class Settings(BaseSettings):
 
     WSGI_APPLICATION = 'caraudiobooking.wsgi.application'
 
-
     # Database
     # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -116,7 +115,6 @@ class Settings(BaseSettings):
         },
     ]
 
-
     # Internationalization
     # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -130,12 +128,10 @@ class Settings(BaseSettings):
 
     USE_TZ = True
 
-
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
     STATIC_URL = '/static/'
-
 
     # DRF Settings
     REST_FRAMEWORK = {
@@ -147,14 +143,14 @@ class Settings(BaseSettings):
         'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     }
 
-    #CORS
+    # CORS
     CORS_ALLOW_ALL_ORIGINS = True
     CORS_ALLOW_CREDENTIALS = True
 
-
-    #CSRF
+    # CSRF
     CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
     # CSRF_COOKIE_SAMESITE = 'None'
+
 
 class LiveSettings(Settings):
     DEBUG = False
@@ -175,7 +171,7 @@ class LiveSettings(Settings):
         "django.contrib.auth.hashers.ScryptPasswordHasher",
     ]
 
-    STATIC_ROOT="/var/www/html/static/"
+    STATIC_ROOT = "/var/www/html/static/"
     # Logging
     LOGGING = {
         'version': 1,
@@ -207,5 +203,9 @@ class LiveSettings(Settings):
             },
         },
     }
-    
+
+    def CSRF_TRUSTED_ORIGINS(self):
+        return [f'https://{self.host}']
+
+
 __getattr__, __dir__ = BaseSettings.use()
