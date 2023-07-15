@@ -10,6 +10,7 @@ export default defineConfig({
     }),
   ],
   base: '',
+  envDir: 'environment',
   server: {
     open: true,
   },
