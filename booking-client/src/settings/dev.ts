@@ -1,9 +1,9 @@
 import type { Setting } from 'types/settings'
 
 const SETTINGS: Setting = {
-  baseUrl: 'http://localhost:8000',
-  login: 'http://localhost:8000/api-auth/login',
-  logout: 'http://localhost:8000/api-auth/logout',
+  baseUrl: import.meta.env.VITE_BASE_URL,
+  login: import.meta.env.VITE_LOGIN_URL,
+  logout: import.meta.env.VITE_LOGOUT_URL,
 }
 
 export default SETTINGS

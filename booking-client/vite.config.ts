@@ -9,6 +9,7 @@ export default defineConfig({
       include: '**/*.tsx',
     }),
   ],
+  base: '',
   server: {
     open: true,
   },
