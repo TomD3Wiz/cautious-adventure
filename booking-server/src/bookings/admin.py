@@ -18,10 +18,20 @@ class StaffPreferencesInline(admin.StackedInline):
 class UserAdmin(AuthUserAdmin):
     inlines = [StaffPreferencesInline]
 
+class BookingEventAdmin(VersionAdmin):
+    date_hierarchy = 'start'
+    search_fields = [
+        'first_name',
+        'last_name',
+        'company_name',
+        'phone',
+        'email'
+    ]
+    list_filter = ['status']
 
 # Register your models here.
 admin.site.register(BookingStatus, VersionAdmin)
-admin.site.register(BookingEvent, VersionAdmin)
+admin.site.register(BookingEvent, BookingEventAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
