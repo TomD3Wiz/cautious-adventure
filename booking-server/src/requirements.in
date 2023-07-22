@@ -1,6 +1,7 @@
 Django
 psycopg2
 djangorestframework
+django-extensions
 markdown
 django-filter
 django-colorfield

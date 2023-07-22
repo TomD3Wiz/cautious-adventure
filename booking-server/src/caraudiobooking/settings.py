@@ -41,12 +41,14 @@ class Settings(BaseSettings):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django.contrib.postgres',
         # 3rd Party Django
         'rest_framework',
         'colorfield',
         'corsheaders',
         'django_filters',
         'reversion',
+        'django_extensions',
         # Local
         'bookings',
     ]

@@ -40,5 +40,4 @@ def whoami(request):
     data.update({
         'csrf': get_token(request)
     })
-    print(data)
     return Response(data)

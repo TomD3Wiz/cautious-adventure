@@ -155,6 +155,12 @@ export default function BookingForm(props: any) {
               control={control}
               render={({ field }) => <Input {...field} />}
             />
+            <Text>Company Name</Text>
+            <Controller
+              name="company_name"
+              control={control}
+              render={({ field }) => <Input {...field} />}
+            />
             <Text>Address</Text>
             <Controller
               name="address"
@@ -179,9 +185,15 @@ export default function BookingForm(props: any) {
               control={control}
               render={({ field }) => <Input {...field} />}
             />
-            <Text>Phone Number</Text>
+            <Text>Phone</Text>
             <Controller
               name="phone"
+              control={control}
+              render={({ field }) => <Input {...field} />}
+            />
+            <Text>Email</Text>
+            <Controller
+              name="email"
               control={control}
               render={({ field }) => <Input {...field} />}
             />

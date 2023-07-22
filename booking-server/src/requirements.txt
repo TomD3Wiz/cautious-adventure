@@ -131,6 +131,7 @@ django==4.2.2 \
     #   -r requirements.in
     #   django-classy-settings
     #   django-cors-headers
+    #   django-extensions
     #   django-filter
     #   django-reversion
     #   djangorestframework
@@ -145,6 +146,10 @@ django-colorfield==0.8.0 \
 django-cors-headers==4.1.0 \
     --hash=sha256:36a8d7a6dee6a85f872fe5916cc878a36d0812043866355438dfeda0b20b6b78 \
     --hash=sha256:88a4bfae24b6404dd0e0640203cb27704a2a57fd546a429e5d821dfa53dd1acf
+    # via -r requirements.in
+django-extensions==3.2.3 \
+    --hash=sha256:44d27919d04e23b3f40231c4ab7af4e61ce832ef46d610cc650d53e68328410a \
+    --hash=sha256:9600b7562f79a92cbf1fde6403c04fee314608fefbb595502e34383ae8203401
     # via -r requirements.in
 django-filter==23.2 \
     --hash=sha256:2fe15f78108475eda525692813205fa6f9e8c1caf1ae65daa5862d403c6dbf00 \

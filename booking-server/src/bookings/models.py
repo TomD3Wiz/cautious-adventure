@@ -45,10 +45,13 @@ class BookingEvent(BaseModel):
     order_number = models.TextField(blank=True)
     first_name = models.TextField(blank=True)
     last_name = models.TextField(blank=True)
+    company_name = models.TextField(blank=True)
+    email = models.TextField(blank=True)
     address = models.TextField(blank=True)
     suburb = models.TextField(blank=True)
     postcode = models.TextField(blank=True)
     state = models.TextField(blank=True)
+    phone = models.TextField(blank=True)
 
     # Vehicle Fields
     vehicle_registration = models.TextField(blank=True)
@@ -67,7 +70,7 @@ class BookingEvent(BaseModel):
         ordering = ('created',)
 
     def __str__(self):
-        return self.title
+        return f'{self.first_name} - {self.last_name} - {self.pk}'
 
 @reversion.register()
 class StaffPreferences(BaseModel):

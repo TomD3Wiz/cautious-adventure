@@ -11,6 +11,7 @@ export interface CalendarEvent {
   address: string
   suburb: string
   postcode: string
+  phone: string
   state: string
   vehicleRegistration: string
   status: string
