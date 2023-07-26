@@ -47,6 +47,12 @@ export default function Calendar() {
         eventClick={editEvent}
         eventChange={changeEvent}
         datesSet={dateRangeUpdated}
+        slotMinTime={'04:00:00'}
+        slotMaxTime={'22:00:00'}
+        businessHours={{
+          startTime: '8:00',
+          endTime: '18:00',
+        }}
         nowIndicator
       />
       <Modal isOpen={isOpen} onClose={onClose}>
