@@ -47,10 +47,6 @@ class BookingEvent(BaseModel):
     last_name = models.TextField(blank=True)
     company_name = models.TextField(blank=True)
     email = models.TextField(blank=True)
-    address = models.TextField(blank=True)
-    suburb = models.TextField(blank=True)
-    postcode = models.TextField(blank=True)
-    state = models.TextField(blank=True)
     phone = models.TextField(blank=True)
 
     # Vehicle Fields
@@ -58,7 +54,6 @@ class BookingEvent(BaseModel):
     vehicle_make = models.TextField(blank=True)
     vehicle_model = models.TextField(blank=True)
     vehicle_year = models.TextField(blank=True)
-    vehicle_build_description = models.TextField(blank=True)
 
     fitting_details = models.TextField(blank=True)
     status = models.ForeignKey(BookingStatus, on_delete=models.PROTECT, related_name='bookings')
@@ -72,6 +67,7 @@ class BookingEvent(BaseModel):
     def __str__(self):
         return f'{self.first_name} - {self.last_name} - {self.pk}'
 
+
 @reversion.register()
 class StaffPreferences(BaseModel):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
@@ -82,3 +78,28 @@ class StaffPreferences(BaseModel):
 
     def __str__(self):
         return f'{self.user.__str__()} - preferences'
+
+
+@reversion.register()
+class Enquiry(BaseModel):
+    company_name = models.TextField(blank=True)
+    name = models.TextField(blank=True)
+    booked_by = models.OneToOneField(User, on_delete=models.PROTECT)
+    email = models.TextField(blank=True)
+    phone = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    is_complete = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('created',)
+
+
+@reversion.register()
+class Notes(BaseModel):
+    enquiry = models.ForeignKey(Enquiry, on_delete=models.CASCADE)
+    created_by = models.OneToOneField(User, on_delete=models.PROTECT)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ('created',)

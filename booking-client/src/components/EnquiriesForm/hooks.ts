@@ -28,7 +28,7 @@ function transformDates(event: any) {
   }
 }
 
-export function useBookingControls(props: any) {
+export function useEnquiryControls(props: any) {
   const { didSubmit, event } = props
   const { data: bookingStatusOptions } = useListStatusQuery('')
   const [addEvent, result] = useAddEventMutation()

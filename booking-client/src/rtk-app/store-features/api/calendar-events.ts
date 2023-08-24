@@ -13,6 +13,11 @@ export const bookingEventApi = createApi({
         return `?start__month__gte=${start_month}&start__month__lte=${end_month}`
       },
     }),
+    getEvent: builder.query<CalendarEvent, string>({
+      query: (uuid) => {
+        return `${uuid}`
+      },
+    }),
     updateEvent: builder.mutation({
       query: ({ uuid, body }) => ({
         url: `${uuid}/`,
@@ -40,6 +45,7 @@ export const bookingEventApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useListEventsQuery,
+  useGetEventQuery,
   useUpdateEventMutation,
   useAddEventMutation,
   useDeleteEventMutation,

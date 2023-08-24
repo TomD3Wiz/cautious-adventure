@@ -49,11 +49,9 @@ export default function useCalendarControls() {
 
   const dateRangeUpdated = useCallback(
     (evt: any) => {
-      console.log(evt.start)
       let month = evt?.start?.getMonth()
       month = isInt(month) ? month + 1 : 1
       if (month !== queryMonth) {
-        console.log(month)
         setMonth(month)
       }
     },

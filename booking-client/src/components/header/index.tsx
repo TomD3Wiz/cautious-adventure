@@ -34,6 +34,11 @@ export default function Header(props: any) {
         justifyContent="center"
         alignItems="center"
         padding="20px"
+        sx={{
+          '@media print': {
+            display: 'none',
+          },
+        }}
       >
         <Link href={SETTINGS.logout} isExternal>
           <CloseIcon boxSize="7" />

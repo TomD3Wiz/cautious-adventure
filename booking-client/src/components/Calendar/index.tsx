@@ -3,10 +3,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
 } from '@chakra-ui/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -61,13 +59,8 @@ export default function Calendar() {
           <ModalHeader>Workshop Booking</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <BookingForm didSubmit={didSubmit} event={event} />
+            <BookingForm didSubmit={didSubmit} cancel={onClose} event={event} />
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="red" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

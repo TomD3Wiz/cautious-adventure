@@ -4,7 +4,8 @@ from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
 from reversion.admin import VersionAdmin
 
-from bookings.models import BookingEvent, BookingStatus, StaffPreferences
+from bookings.models import BookingEvent, BookingStatus, StaffPreferences, Notes, Enquiry
+
 
 User = get_user_model()
 
@@ -14,6 +15,11 @@ class StaffPreferencesInline(admin.StackedInline):
     max_num = 1
     can_delete = False
 
+
+class NotesInline(admin.StackedInline):
+    model = Notes
+    max_num = 1
+    can_delete = False
 
 class UserAdmin(AuthUserAdmin):
     inlines = [StaffPreferencesInline]
@@ -29,9 +35,20 @@ class BookingEventAdmin(VersionAdmin):
     ]
     list_filter = ['status']
 
+class EnquiryAdmin(VersionAdmin):
+    date_hierarchy = 'created'
+    search_fields = [
+        'name',
+        'company_name',
+        'phone',
+        'email'
+    ]
+    inlines = [NotesInline]
+
 # Register your models here.
 admin.site.register(BookingStatus, VersionAdmin)
 admin.site.register(BookingEvent, BookingEventAdmin)
+admin.site.register(Enquiry, EnquiryAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

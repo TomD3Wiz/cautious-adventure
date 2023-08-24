@@ -1,6 +1,7 @@
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Controller } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import {
   Heading,
@@ -25,22 +26,24 @@ export default function BookingForm(props: any) {
     save,
     deleteIt,
     deleteCount,
+    errors,
   } = useBookingControls(props)
+
   return (
     <>
-      <SimpleGrid columns={2} spacing={5} padding={'5px'}>
+      <SimpleGrid columns={2} spacing={1} padding={'5px'}>
         <Section>
           <Heading marginBottom={'10px'} size="md">
             Booking Information
           </Heading>
-          <SimpleGrid columns={2} spacing={5} padding={'5px'}>
-            <Text>Booking Title</Text>
+          <SimpleGrid columns={2} spacing={1} padding={'5px'}>
+            <Text>Booking Title </Text>
             <Controller
               name="title"
               control={control}
               render={({ field }) => <Input {...field} />}
             />
-            <Text>Booked By</Text>
+            <Text color={errors.booked_by && 'red'}>Booked By</Text>
             <Controller
               name="booked_by"
               control={control}
@@ -60,7 +63,7 @@ export default function BookingForm(props: any) {
                 </Select>
               )}
             />
-            <Text>Installer</Text>
+            <Text color={errors.installer && 'red'}>Installer</Text>
             <Controller
               name="installer"
               control={control}
@@ -80,7 +83,7 @@ export default function BookingForm(props: any) {
                 </Select>
               )}
             />
-            <Text>Order Number</Text>
+            <Text>Invoice Number</Text>
             <Controller
               name="order_number"
               control={control}
@@ -118,7 +121,7 @@ export default function BookingForm(props: any) {
                 )}
               />
             </DateContainer>
-            <Text>Status</Text>
+            <Text color={errors.status && 'red'}>Status</Text>
             <Controller
               name="status"
               control={control}
@@ -142,7 +145,7 @@ export default function BookingForm(props: any) {
           <Heading marginBottom={'10px'} size="md">
             Client Information
           </Heading>
-          <SimpleGrid columns={2} spacing={5}>
+          <SimpleGrid columns={2} spacing={1}>
             <Text>First Name</Text>
             <Controller
               name="first_name"
@@ -161,30 +164,6 @@ export default function BookingForm(props: any) {
               control={control}
               render={({ field }) => <Input {...field} />}
             />
-            <Text>Address</Text>
-            <Controller
-              name="address"
-              control={control}
-              render={({ field }) => <Input {...field} />}
-            />
-            <Text>Suburb</Text>
-            <Controller
-              name="suburb"
-              control={control}
-              render={({ field }) => <Input {...field} />}
-            />
-            <Text>State</Text>
-            <Controller
-              name="state"
-              control={control}
-              render={({ field }) => <Input {...field} />}
-            />
-            <Text>Post Code</Text>
-            <Controller
-              name="postcode"
-              control={control}
-              render={({ field }) => <Input {...field} />}
-            />
             <Text>Phone</Text>
             <Controller
               name="phone"
@@ -200,12 +179,12 @@ export default function BookingForm(props: any) {
           </SimpleGrid>
         </Section>
       </SimpleGrid>
-      <SimpleGrid columns={2} spacing={5} padding={'5px'}>
+      <SimpleGrid columns={2} spacing={1} padding={'5px'}>
         <Section>
           <Heading marginBottom={'10px'} size="md">
             Vehicle Information
           </Heading>
-          <SimpleGrid columns={2} spacing={5}>
+          <SimpleGrid columns={2} spacing={1}>
             <Text>Registration</Text>
             <Controller
               name="vehicle_registration"
@@ -230,12 +209,6 @@ export default function BookingForm(props: any) {
               control={control}
               render={({ field }) => <Input {...field} />}
             />
-            <Text>Build Description</Text>
-            <Controller
-              name="vehicle_build_description"
-              control={control}
-              render={({ field }) => <Input {...field} />}
-            />
           </SimpleGrid>
         </Section>
 
@@ -247,7 +220,7 @@ export default function BookingForm(props: any) {
             name="fitting_details"
             control={control}
             render={({ field }) => (
-              <Textarea height={'300px'} size="lg" {...field} />
+              <Textarea fontSize="12px" height={'200px'} size="lg" {...field} />
             )}
           />
         </Section>
@@ -256,13 +229,22 @@ export default function BookingForm(props: any) {
         Save
       </Button>
       {props?.event?.id && (
-        <Button
-          colorScheme={deleteCount > 0 ? 'red' : 'orange'}
-          onClick={deleteIt}
-        >
-          Delete
-          {deleteCount > 0 && <span>&nbsp; (Press Again)</span>}
-        </Button>
+        <>
+          <Button marginRight="5px">
+            <Link to={`/print/${props.event.id}`}>Print</Link>
+          </Button>
+          <Button
+            colorScheme={deleteCount > 0 ? 'red' : 'orange'}
+            onClick={deleteIt}
+            marginRight="5px"
+          >
+            Delete
+            {deleteCount > 0 && <span>&nbsp; (Press Again)</span>}
+          </Button>
+          <Button colorScheme={'red'} onClick={props.cancel}>
+            Cancel
+          </Button>
+        </>
       )}
     </>
   )
