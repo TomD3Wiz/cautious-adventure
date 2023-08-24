@@ -84,7 +84,7 @@ class StaffPreferences(BaseModel):
 class Enquiry(BaseModel):
     company_name = models.TextField(blank=True)
     name = models.TextField(blank=True)
-    booked_by = models.OneToOneField(User, on_delete=models.PROTECT)
+    booked_by = models.ForeignKey(User, on_delete=models.PROTECT)
     email = models.TextField(blank=True)
     phone = models.TextField(blank=True)
     description = models.TextField(blank=True)
@@ -97,8 +97,8 @@ class Enquiry(BaseModel):
 
 @reversion.register()
 class Notes(BaseModel):
-    enquiry = models.ForeignKey(Enquiry, on_delete=models.CASCADE)
-    created_by = models.OneToOneField(User, on_delete=models.PROTECT)
+    enquiry = models.ForeignKey(Enquiry, on_delete=models.CASCADE, related_name='notes')
+    created_by = models.ForeignKey(User, on_delete=models.PROTECT)
     description = models.TextField(blank=True)
 
     class Meta:

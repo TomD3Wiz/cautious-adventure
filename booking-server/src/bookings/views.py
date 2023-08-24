@@ -8,9 +8,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
 
-from bookings.serializers import BookingEventSerializer, BookingStatusSerializer, StaffPreferencesSerializer, UserSerializer
-from bookings.models import BookingStatus, BookingEvent, StaffPreferences
+from bookings.serializers import BookingEventSerializer, BookingStatusSerializer, StaffPreferencesSerializer, UserSerializer, NotesSerializer, EnquirySerializer
+from bookings.models import BookingStatus, BookingEvent, StaffPreferences, Notes, Enquiry
 from bookings.filtersets import EventFilter
+
 
 class BookingStatusViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = BookingStatus.objects.all()
@@ -41,3 +42,15 @@ def whoami(request):
         'csrf': get_token(request)
     })
     return Response(data)
+
+
+class NotesViewSet(viewsets.ModelViewSet):
+    queryset = Notes.objects.all()
+    serializer_class = NotesSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class EnquiryViewSet(viewsets.ModelViewSet):
+    queryset = Enquiry.objects.prefetch_related('notes').all()
+    serializer_class = EnquirySerializer
+    permission_classes = [permissions.IsAuthenticated]

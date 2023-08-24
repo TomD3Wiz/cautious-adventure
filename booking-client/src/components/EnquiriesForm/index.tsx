@@ -8,16 +8,14 @@ import {
   Textarea,
   Select,
   Button,
-  Checkbox
+  Checkbox,
 } from '@chakra-ui/react'
 
 import { useEnquiryControls } from './hooks'
 import { Section } from './style'
 
-
 export default function EnquiriesForm(props: any) {
   const {
-    bookingStatusOptions,
     staffOptions,
     control,
     save,

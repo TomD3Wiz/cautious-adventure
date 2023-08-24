@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from bookings.models import BookingEvent, BookingStatus, StaffPreferences
+from bookings.models import BookingEvent, BookingStatus, StaffPreferences, Notes, Enquiry
 
 
 User = get_user_model()
@@ -58,4 +58,16 @@ class StaffPreferencesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StaffPreferences
+        fields = "__all__"
+
+
+class NotesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notes
+        fields = "__all__"
+
+
+class EnquirySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Enquiry
         fields = "__all__"
