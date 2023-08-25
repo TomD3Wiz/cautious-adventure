@@ -8,4 +8,6 @@ export interface Enquiry {
   description: string
   is_active: boolean
   is_complete: boolean
+  modified: string
+  created: string
 }

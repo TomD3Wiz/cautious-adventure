@@ -12,11 +12,10 @@ import {
   Select,
   Button,
 } from '@chakra-ui/react'
+import { DATEFORMAT } from 'components/constants'
 
 import { useBookingControls } from './hooks'
 import { Section, DateContainer } from './style'
-
-const DATEFORMAT = 'dd/MM/yyyy HH:mm'
 
 export default function BookingForm(props: any) {
   const {

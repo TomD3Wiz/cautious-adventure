@@ -10,7 +10,7 @@ import {
 import { useListStaffQuery } from 'rtk-app/store-features/api/staff'
 
 export function useEnquiryControls(props: any) {
-  const { didSubmit, event } = props
+  const { didSubmit, enquiry } = props
   const { data: bookingStatusOptions } = useListStatusQuery('')
   const [addEvent, result] = useAddEnquiryMutation()
   const [updateEvent, updateResult] = useUpdateEnquiryMutation()
@@ -41,8 +41,8 @@ export function useEnquiryControls(props: any) {
       setDeleteCount(1)
       return
     }
-    deleteEvent(event.id)
-  }, [deleteCount, setDeleteCount, event, deleteEvent])
+    deleteEvent(enquiry.id)
+  }, [deleteCount, setDeleteCount, enquiry, deleteEvent])
 
   useEffect(() => {
     const results = [result, updateResult, deleteResult]
@@ -55,11 +55,11 @@ export function useEnquiryControls(props: any) {
   }, [result, didSubmit, updateResult, deleteResult])
 
   useEffect(() => {
-    if (event) {
-      reset(event)
+    if (enquiry) {
+      reset(enquiry)
     }
-  }, [event, reset])
-  
+  }, [enquiry, reset])
+
   return {
     bookingStatusOptions,
     staffOptions,

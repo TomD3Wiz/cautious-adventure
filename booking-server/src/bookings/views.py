@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 from bookings.serializers import BookingEventSerializer, BookingStatusSerializer, StaffPreferencesSerializer, UserSerializer, NotesSerializer, EnquirySerializer
 from bookings.models import BookingStatus, BookingEvent, StaffPreferences, Notes, Enquiry
-from bookings.filtersets import EventFilter
+from bookings.filtersets import EventFilter, EnquiriesFilter
 
 
 class BookingStatusViewSet(viewsets.ReadOnlyModelViewSet):
@@ -54,3 +54,4 @@ class EnquiryViewSet(viewsets.ModelViewSet):
     queryset = Enquiry.objects.prefetch_related('notes').all()
     serializer_class = EnquirySerializer
     permission_classes = [permissions.IsAuthenticated]
+    filterset_class = EnquiriesFilter

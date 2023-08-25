@@ -15,14 +15,8 @@ import { useEnquiryControls } from './hooks'
 import { Section } from './style'
 
 export default function EnquiriesForm(props: any) {
-  const {
-    staffOptions,
-    control,
-    save,
-    deleteIt,
-    deleteCount,
-    errors,
-  } = useEnquiryControls(props)
+  const { staffOptions, control, save, deleteIt, deleteCount, errors } =
+    useEnquiryControls(props)
 
   return (
     <>
@@ -86,13 +80,13 @@ export default function EnquiriesForm(props: any) {
             />
             <Text>Active</Text>
             <Controller
-              name="active"
+              name="is_active"
               control={control}
               render={({ field }) => <Checkbox {...field} />}
             />
             <Text>Complete</Text>
             <Controller
-              name="complete"
+              name="is_complete"
               control={control}
               render={({ field }) => <Checkbox {...field} />}
             />
@@ -103,10 +97,10 @@ export default function EnquiriesForm(props: any) {
             Enquiry Details
           </Heading>
           <Controller
-            name="fitting_details"
+            name="description"
             control={control}
             render={({ field }) => (
-              <Textarea fontSize="12px" height={'200px'} size="lg" {...field} />
+              <Textarea fontSize="12px" height={'400px'} size="lg" {...field} />
             )}
           />
         </Section>
