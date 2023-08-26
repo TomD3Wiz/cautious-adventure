@@ -58,16 +58,16 @@ export default function PrintBooking() {
             Vehicle Information
           </Heading>
           <Text>
-            <strong>Registration:</strong> {event?.order_number}
+            <strong>Make:</strong> {event?.vehicle_make}
           </Text>
           <Text>
-            <strong>Make:</strong> {event?.order_number}
+            <strong>Model:</strong> {event?.vehicle_model}
           </Text>
           <Text>
-            <strong>Model:</strong> {event?.order_number}
+            <strong>Year:</strong> {event?.vehicle_year}
           </Text>
           <Text>
-            <strong>Year:</strong> {event?.order_number}
+            <strong>Registration:</strong> {event?.vehicle_registration}
           </Text>
         </Section>
       </SimpleGrid>
