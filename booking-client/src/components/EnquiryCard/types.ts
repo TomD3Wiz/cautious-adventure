@@ -1,6 +1,6 @@
 import type { Enquiry } from 'types/enquiry'
 
 export interface EnquiryCardProps {
-  enquiry: Enquiry
+  record: Enquiry
   onSelect(enquiry: Enquiry): void
 }

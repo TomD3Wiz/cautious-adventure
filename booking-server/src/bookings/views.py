@@ -1,4 +1,6 @@
 
+from rest_framework import filters
+
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.middleware.csrf import get_token
 
@@ -12,8 +14,18 @@ from bookings.serializers import BookingEventSerializer, BookingStatusSerializer
 from bookings.models import BookingStatus, BookingEvent, StaffPreferences, Notes, Enquiry
 from bookings.filtersets import EventFilter, EnquiriesFilter
 
+class ResultsCapableViewSet(viewsets.ModelViewSet):
+    def filter_queryset(self, queryset):
+        qs = super().filter_queryset(queryset)
+        results = self.request.GET.get('results', None)
+        if results:
+            try:
+                return qs[:int(results)]
+            except Exception:
+                return qs
+        return qs
 
-class BookingStatusViewSet(viewsets.ReadOnlyModelViewSet):
+class BookingStatusViewSet(ResultsCapableViewSet):
     queryset = BookingStatus.objects.all()
     serializer_class = BookingStatusSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -24,6 +36,24 @@ class BookingEventViewSet(viewsets.ModelViewSet):
     serializer_class = BookingEventSerializer
     permission_classes = [permissions.IsAuthenticated]
     filterset_class = EventFilter
+    filter_backends = [filters.SearchFilter]
+    search_fields = [
+        'company_name',
+        'first_name',
+        'last_name',
+        'email',
+        'phone'
+    ]
+
+    def filter_queryset(self, queryset):
+        qs = super().filter_queryset(queryset)
+        results = self.request.GET.get('results', None)
+        if results:
+            try:
+                return qs[:int(results)]
+            except Exception:
+                return qs
+        return qs
 
 
 class StaffPreferencesViewSet(viewsets.ReadOnlyModelViewSet):
@@ -50,8 +80,15 @@ class NotesViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class EnquiryViewSet(viewsets.ModelViewSet):
+class EnquiryViewSet(ResultsCapableViewSet):
     queryset = Enquiry.objects.prefetch_related('notes').all()
     serializer_class = EnquirySerializer
     permission_classes = [permissions.IsAuthenticated]
     filterset_class = EnquiriesFilter
+    filter_backends = [filters.SearchFilter]
+    search_fields = [
+        'company_name',
+        'name',
+        'email',
+        'phone'
+    ]

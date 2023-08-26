@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import type { Enquiry } from 'types/enquiry'
+import type { searchParams } from 'types/search-params'
 
 import { commonFetchBase } from './common'
 
@@ -7,9 +8,13 @@ export const enquiryEnquiryApi = createApi({
   reducerPath: 'enquiry',
   baseQuery: commonFetchBase('/api/bookings/v1/enquiries/'),
   endpoints: (builder) => ({
-    listEnquirys: builder.query<Array<Enquiry>, string>({
-      query: (query_string) => {
-        return query_string
+    listEnquirys: builder.query<Array<Enquiry>, searchParams>({
+      query: (queryObject: searchParams) => {
+        let url = ''
+        if (queryObject) {
+          url = `?${new URLSearchParams(queryObject)}`
+        }
+        return url
       },
     }),
     getEnquiry: builder.query<Enquiry, string>({

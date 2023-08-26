@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import type { CalendarEvent } from 'types/calendar'
+import type { searchParams } from 'types/search-params'
 
 import { commonFetchBase } from './common'
 
@@ -11,6 +12,15 @@ export const bookingEventApi = createApi({
       query: (start_month) => {
         const end_month = start_month + 3
         return `?start__month__gte=${start_month}&start__month__lte=${end_month}`
+      },
+    }),
+    searchEvents: builder.query<Array<CalendarEvent>, searchParams>({
+      query: (queryObject) => {
+        let url = ''
+        if (queryObject) {
+          url = `?${new URLSearchParams(queryObject)}`
+        }
+        return url
       },
     }),
     getEvent: builder.query<CalendarEvent, string>({
@@ -49,4 +59,5 @@ export const {
   useUpdateEventMutation,
   useAddEventMutation,
   useDeleteEventMutation,
+  useSearchEventsQuery,
 } = bookingEventApi

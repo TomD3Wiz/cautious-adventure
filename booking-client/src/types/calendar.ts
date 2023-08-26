@@ -23,4 +23,8 @@ export interface CalendarEvent {
   fitting_details: string
   installer_display: string
   booked_by_display: string
+  created: string
+  modified: string
+  textColor: string
+  backgroundColor: string
 }

@@ -15,17 +15,21 @@ import { DateTime } from 'luxon'
 import type { EnquiryCardProps } from './types'
 
 export default function EnquiryCard(props: EnquiryCardProps) {
-  const { enquiry, onSelect } = props
+  const { record, onSelect } = props
 
   return (
-    <Card marginBottom={'10px'} backgroundColor={'rgb(0, 174, 239, 0.1)'}>
+    <Card
+      textAlign={'left'}
+      marginBottom={'10px'}
+      backgroundColor={'rgb(0, 174, 239, 0.1)'}
+    >
       <CardHeader>
         <SimpleGrid columns={2}>
           <Text>
             <strong>Customer Enquiry</strong>
           </Text>
           <Box textAlign={'right'}>
-            <Button onClick={() => onSelect(enquiry)}>
+            <Button onClick={() => onSelect(record)}>
               <SettingsIcon />
             </Button>
           </Box>
@@ -34,25 +38,27 @@ export default function EnquiryCard(props: EnquiryCardProps) {
       <CardBody>
         <SimpleGrid columns={2} spacing={1}>
           <div>
-            <Text>{enquiry.name}</Text>
-            <Text>{enquiry.company_name}</Text>
-            <Text>{enquiry.email}</Text>
-            <Text>{enquiry.phone}</Text>
-            <Text>{enquiry.is_active}</Text>
-            <Text>{enquiry.is_complete}</Text>
-            <Text>{enquiry.booked_by}</Text>
+            <Text>{record.company_name}</Text>
+            <Text>{record.name}</Text>
+            <Text>{record.phone}</Text>
+            <Text>{record.email}</Text>
+            <Text>{record.is_complete}</Text>
           </div>
           <div>
-            <Text whiteSpace={'pre-wrap'}>{enquiry.description}</Text>
+            <Text whiteSpace={'pre-wrap'}>{record.description}</Text>
           </div>
         </SimpleGrid>
       </CardBody>
       <CardFooter>
         <Text fontSize={'xs'}>
           <em>
-            Created: {DateTime.fromISO(enquiry.created).toFormat(DATEFORMAT)}{' '}
+            Enquiry Taken by: {record.booked_by_name}&nbsp;
+            <br />
+            Created: {DateTime.fromISO(record.created).toFormat(
+              DATEFORMAT
+            )}{' '}
             Last Modified:{' '}
-            {DateTime.fromISO(enquiry.modified).toFormat(DATEFORMAT)}
+            {DateTime.fromISO(record.modified).toFormat(DATEFORMAT)}
           </em>
         </Text>
       </CardFooter>

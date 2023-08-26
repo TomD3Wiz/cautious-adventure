@@ -33,19 +33,12 @@ export default function EnquiriesForm(props: any) {
               control={control}
               render={({ field }) => <Input {...field} />}
             />
-            <Text>First Name</Text>
+            <Text>Name</Text>
             <Controller
-              name="first_name"
+              name="name"
               control={control}
               render={({ field }) => <Input {...field} />}
             />
-            <Text>Last Name</Text>
-            <Controller
-              name="last_name"
-              control={control}
-              render={({ field }) => <Input {...field} />}
-            />
-
             <Text>Phone</Text>
             <Controller
               name="phone"
@@ -77,12 +70,6 @@ export default function EnquiriesForm(props: any) {
                   ))}
                 </Select>
               )}
-            />
-            <Text>Active</Text>
-            <Controller
-              name="is_active"
-              control={control}
-              render={({ field }) => <Checkbox {...field} />}
             />
             <Text>Complete</Text>
             <Controller

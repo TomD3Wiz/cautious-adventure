@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 import {
   Modal,
@@ -8,7 +6,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Button,
   ScaleFade,
   Box,
@@ -18,21 +15,26 @@ import {
 } from '@chakra-ui/react'
 import EnquiriesForm from 'components/EnquiriesForm'
 import EnquiryCard from 'components/EnquiryCard'
-import { useListEnquirysQuery } from 'rtk-app/store-features/api/enquiries'
-import type { Enquiry } from 'types/enquiry'
+
+import { useEnquiryControls } from './hooks'
 
 export default function EnquiriesScreen() {
-  const { data: enquiries, refetch } = useListEnquirysQuery(
-    `?${new URLSearchParams({ is_complete: 'false' })}`
-  )
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [selectedEnquiry, setSelectedEnquiry] = useState<Enquiry>()
-
+  const {
+    selectedEnquiry,
+    setSelectedEnquiry,
+    isOpen,
+    onOpen,
+    onClose,
+    enquiries,
+    closeAndRefetchNewEnquiry,
+    closeAndRefetchExistingEnquiry,
+    closeExistingEnquiry,
+  } = useEnquiryControls()
   return (
     <Box textAlign={'left'}>
       <SimpleGrid columns={2} marginBottom={'20px'}>
         <Box>
-          {enquiries?.length !== 0 && (
+          {enquiries && enquiries?.length !== 0 && (
             <Heading size="lg">Outstanding Enquiries</Heading>
           )}
         </Box>
@@ -43,7 +45,7 @@ export default function EnquiriesScreen() {
       {enquiries?.map((enquiry) => (
         <ScaleFade key={enquiry.id} in={!!enquiry.id}>
           <EnquiryCard
-            enquiry={enquiry}
+            record={enquiry}
             onSelect={(enquiry) => setSelectedEnquiry(enquiry)}
           />
         </ScaleFade>
@@ -62,10 +64,7 @@ export default function EnquiriesScreen() {
           </Text>
         </Box>
       )}
-      <Modal
-        isOpen={!!selectedEnquiry}
-        onClose={() => setSelectedEnquiry(undefined)}
-      >
+      <Modal isOpen={!!selectedEnquiry} onClose={closeExistingEnquiry}>
         <ModalOverlay />
         <ModalContent sx={{ maxWidth: '80%' }}>
           <ModalHeader>Workshop Booking</ModalHeader>
@@ -73,11 +72,8 @@ export default function EnquiriesScreen() {
           <ModalBody>
             {selectedEnquiry && (
               <EnquiriesForm
-                didSubmit={() => {
-                  setSelectedEnquiry(undefined)
-                  refetch()
-                }}
-                cancel={() => setSelectedEnquiry(undefined)}
+                didSubmit={closeAndRefetchExistingEnquiry}
+                cancel={closeExistingEnquiry}
                 enquiry={selectedEnquiry}
               />
             )}
@@ -91,10 +87,7 @@ export default function EnquiriesScreen() {
           <ModalCloseButton />
           <ModalBody>
             <EnquiriesForm
-              didSubmit={() => {
-                onClose()
-                refetch()
-              }}
+              didSubmit={closeAndRefetchNewEnquiry}
               cancel={onClose}
             />
           </ModalBody>

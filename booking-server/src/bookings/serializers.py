@@ -68,6 +68,12 @@ class NotesSerializer(serializers.ModelSerializer):
 
 
 class EnquirySerializer(serializers.ModelSerializer):
+    booked_by_name = serializers.SerializerMethodField()
     class Meta:
         model = Enquiry
         fields = "__all__"
+
+    def get_booked_by_name(self, obj):
+        if obj.booked_by:
+            return obj.booked_by.get_full_name()
+        return ''

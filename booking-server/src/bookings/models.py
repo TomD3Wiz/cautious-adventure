@@ -62,7 +62,7 @@ class BookingEvent(BaseModel):
     installer = models.ForeignKey(User, on_delete=models.PROTECT, related_name='installed_jobs')
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
 
     def __str__(self):
         return f'{self.first_name} - {self.last_name} - {self.pk}'
@@ -88,11 +88,10 @@ class Enquiry(BaseModel):
     email = models.TextField(blank=True)
     phone = models.TextField(blank=True)
     description = models.TextField(blank=True)
-    is_active = models.BooleanField(default=True)
     is_complete = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
 
 
 @reversion.register()
