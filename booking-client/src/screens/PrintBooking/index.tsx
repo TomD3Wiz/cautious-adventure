@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 
-import { Heading, Text, SimpleGrid, Button } from '@chakra-ui/react'
+import { Heading, Text, SimpleGrid, Button, Box } from '@chakra-ui/react'
 import { useGetEventQuery } from 'rtk-app/store-features/api/calendar-events'
 
 import { Section, PrintContainer } from './style'
@@ -78,6 +78,12 @@ export default function PrintBooking() {
         <Text textAlign={'left'} whiteSpace={'pre'}>
           {event?.fitting_details}
         </Text>
+      </Section>
+      <Section>
+        <Heading textAlign="center" marginBottom={'10px'} size="md">
+          Issues with the car?
+        </Heading>
+        <Box height={'300px'} />
       </Section>
       <PrintContainer>
         <Button onClick={() => window.print()}>Print</Button>
